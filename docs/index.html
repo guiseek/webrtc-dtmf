@@ -4,80 +4,59 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.17e50649.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400&display=swap"
       rel="stylesheet"
-      type="text/css"
     />
-    <link
-      href="//fonts.googleapis.com/css?family=Inconsolata"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <title>Vite App</title>
-    <script type="module" crossorigin src="./assets/index.66a7bd9b.js"></script>
-    <link rel="stylesheet" href="./assets/index.600d6dc9.css">
+    <title>WebRTC DTMF</title>
+    <script type="module" crossorigin src="./assets/index.10a632f6.js"></script>
+    <link rel="stylesheet" href="./assets/index.5b30bab0.css">
   </head>
   <body>
-    <div id="dialPad">
-      <div>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-      </div>
-      <div>
-        <button>5</button>
-        <button>6</button>
-        <button>7</button>
-        <button>8</button>
-      </div>
-      <div>
-        <button>9</button>
-        <button>0</button>
-        <button>*</button>
-        <button>#</button>
-      </div>
-      <div>
-        <button>A</button>
-        <button>B</button>
-        <button>C</button>
-        <button>D</button>
-      </div>
-    </div>
+    <div class="container">
+      
+      <main id="control">
+        <menu is="virtual-keyboard" state="disabled"></menu>
 
-    <div id="dtmf">
-      <h2>Sent tones</h2>
-      <div id="dtmfStatus"></div>
-      <input type="text" disabled style="width: 80%" id="sentTones" />
-      <audio autoplay="autoplay"></audio>
-    </div>
+        <section id="dtmf">
+          <h2>Enviar tons de discagem</h2>
+          <div id="dtmfStatus"></div>
+          <input type="text" readonly id="sentTones" />
+          <audio autoplay="autoplay"></audio>
+        </section>
 
-    <div id="parameters">
-      <div>
-        <label for="duration">Duration:</label>
-        <input id="duration" type="range" value="500" min="70" max="6000" />
-        <span id="durationValue">500</span>
-      </div>
-      <div>
-        <label for="gap">Gap:</label>
-        <input id="gap" type="range" value="50" min="50" max="1000" />
-        <span id="gapValue">50</span>
-      </div>
-      <div>
-        <label for="tones">Tones:</label>
-        <input
-          id="tones"
-          type="text"
-          value="1199##9,6633221,9966332,9966332,1199##9,6633221"
-        />
-      </div>
-    </div>
+        <section id="parameters">
+          <section>
+            <label for="duration">Duração:</label>
+            <input id="duration" type="range" value="500" min="70" max="6000" />
+            <span id="durationValue">500</span>
+          </section>
 
-    <div id="buttons">
-      <button id="callButton">Call</button>
-      <button id="sendTonesButton">Send tones</button>
-      <button id="hangupButton">Hang up</button>
+          <section>
+            <label for="gap">Intervalo:</label>
+            <input id="gap" type="range" value="50" min="50" max="1000" />
+            <span id="gapValue">50</span>
+          </section>
+
+          <section>
+            <label for="tones">Tons:</label>
+            <input
+              id="tones"
+              type="text"
+              value="1199##9,6633221,9966332,9966332,1199##9,6633221"
+            />
+          </section>
+
+          <section id="buttons">
+            <button id="callButton">Iniciar ligação</button>
+            <button id="sendTonesButton">Discar</button>
+            <button id="hangupButton">Desligar</button>
+          </section>
+        </section>
+
+      </main>
     </div>
     
   </body>

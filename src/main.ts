@@ -79,10 +79,10 @@ async function call() {
   pc2.addEventListener('icecandidate', (e) => onIceCandidate(pc2!, e))
   pc2.addEventListener('track', (e) => gotRemoteStream(e))
 
-  pc1.onconnectionstatechange = (e) => {
+  pc1.onconnectionstatechange = () => {
     console.log('Estado da conexão de peer local:', pc1!.connectionState)
   }
-  pc2.onconnectionstatechange = (e) => {
+  pc2.onconnectionstatechange = () => {
     console.log('Estado da conexão de peer remoto:', pc2!.connectionState)
   }
 
