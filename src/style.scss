@@ -1,86 +1,156 @@
-/*
- *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree.
- */
- button {
-  margin: 0 20px 20px 0;
-  width: 96px;
+:root {
+  --accent: #00ff62;
+  --primary: #00d5ff;
+  --secondary: #2f3336;
+  --accent-contrast: #fff;
+  --surface: #272b2c;
+  --surface-border: rgba(255, 255, 255, 0.1);
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: var(--accent-contrast);
+  accent-color: var(--accent);
+  background: var(--surface);
+  font-family: 'Fira Sans Condensed', sans-serif;
 }
 
-div#dialPad button {
-  background-color: #ddd;
-  border: 1px solid #ccc;
-  color: black;
-  font-size: 1em;
-  font-weight: 400;
-  height: 40px;
-  margin: 0 10px 10px 0;
-  width: 40px;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-div#dialPad button:hover {
-  background-color: #aaa;
+#control {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 30px;
+  border: 2px solid var(--surface-border);
+  border-radius: 6px;
+  align-items: center;
+
+  input {
+    padding: 6px;
+    color: var(--primary);
+    background-color: var(--surface-border);
+    border-radius: 3px;
+    border: none;
+  }
+
+  button {
+    color: var(--primary);
+    background: var(--secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 0;
+
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.7);
+    text-shadow: 0px 0px 40px var(--primary), 0px 0px 80px var(--primary);
+
+    transition: transform 500ms, opacity 1s;
+
+    &:disabled {
+      transform: scale(0.96);
+      opacity: 0.2;
+    }
+
+    &:not(:disabled):hover {
+      cursor: pointer;
+      background: #2f3336;
+      text-shadow: 1px 2px 60px #00bcd4, 0px 0px 60px rgba(0, 188, 212, 0.9),
+        0px 0px 60px rgba(0, 188, 212, 0.9),
+        10px 10px 60px rgba(0, 188, 212, 0.9);
+    }
+
+    &:not(:disabled):active {
+      transform: scale(0.86);
+    }
+  }
+
+  > section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 15px;
+  }
+
+  #dtmf {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    h2 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  #parameters {
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+    align-items: center;
+
+    > section {
+      display: flex;
+      column-gap: 10px;
+      align-items: center;
+    }
+  }
+  #buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-div#dialPad button:active {
-  background-color: #888;
-}
+menu[is='virtual-keyboard'] {
+  
+  display: grid;
+  grid-gap: 0.4em;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(4, 50px);
+  justify-content: start;
+  list-style: none;
+  padding: 10px;
 
-div#dialPad {
-  display: inline-block;
-  margin: 0 20px 20px 0;
-  vertical-align: top;
-}
+  li {
+    margin: 0;
+    padding: 0;
 
-div#parameters {
-  margin: 0 0 25px 0;
-}
+    button {
+      padding: 15px;
+      color: var(--primary);
+      background: var(--secondary);
+      border-radius: 12px;
+      width: 55px;
+      text-align: center;
+      border: 0;
 
-div#parameters > div {
-  height: 28px;
-  margin: 0 0 10px 0;
-}
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.7);
+      text-shadow: 0px 0px 40px var(--primary), 0px 0px 80px var(--primary);
 
-div#dtmf {
-  background-color: #eee;
-  display: inline-block;
-  height: 180px;
-  margin: 0 0 20px 0;
-  padding: 5px 5px 5px 10px;
-  width: calc(100% - 239px);
-}
+      transition: transform 500ms, opacity 1s;
 
-div#dtmf div {
-  font-family: 'Inconsolata', 'Courier New', monospace;
-}
+      &:disabled {
+        transform: scale(0.96);
+        opacity: 0.2;
+      }
 
-div#sentTones {
-  display: inline-block;
-  line-height: 1.2em;
-}
+      &:not(:disabled):hover {
+        cursor: pointer;
+        background: var(--secondary);
+        text-shadow: 1px 2px 60px #00bcd4, 0px 0px 60px rgba(0, 188, 212, 0.9),
+          0px 0px 60px rgba(0, 188, 212, 0.9),
+          10px 10px 60px rgba(0, 188, 212, 0.9);
+      }
 
-div#dtmfStatus {
-  margin: 0 0 10px 0;
-}
-
-div#parameters input[type = range] {
-  font-size: 1em;
-  width: 85px;
-}
-
-div#parameters input#tones {
-  width: calc(100% - 78px);
-}
-
-div#parameters label {
-  display: inline-block;
-  font-weight: 400;
-  height: 28px;
-  position: relative;
-  top: 4px;
-  vertical-align: top;
-  width: 68px;
+      &:not(:disabled):active {
+        transform: scale(0.86);
+      }
+    }
+  }
 }
